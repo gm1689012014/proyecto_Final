@@ -3,21 +3,23 @@
   "version": "1.0.0",
   "description": "API RESTful básica para gestión de productos",
   "main": "app.js",
-"scripts": {
-  "start": "node src/app.js",
-  "dev": "nodemon --watch SRC src/app.js"
-},
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "nodemon --watch src src/app.js",
+    "migrate": "npx sequelize-cli db:migrate"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^2.2.0",
-    "dotenv": "^17.2.0",
-    "express": "^5.1.0",
-    "mysql2": "^3.14.2",
-    "sequelize": "^6.37.7"
+    "body-parser": "^1.20.2",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "mysql2": "^3.6.5",
+    "sequelize": "^6.37.0",
+    "sequelize-cli": "^6.6.1"
   },
   "devDependencies": {
-    "nodemon": "^3.1.10"
+    "nodemon": "^3.0.2"
   }
 }

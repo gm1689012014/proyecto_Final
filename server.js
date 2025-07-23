@@ -1,1 +1,2 @@
-require('./src/app.js');
+// En server.js
+require('./src/app');

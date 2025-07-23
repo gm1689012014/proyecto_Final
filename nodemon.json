@@ -2,5 +2,6 @@
   "watch": ["src"],
   "ext": "js,json",
   "exec": "node src/app.js",
-  "verbose": true
+  "verbose": true,
+  "ignore": ["src/public/*"]
 }
