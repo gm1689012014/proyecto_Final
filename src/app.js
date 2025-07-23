@@ -14,10 +14,12 @@ app.use(bodyParser.json());
 app.use(express.static('public'));
 
 // Ruta principal que sirve test.html
+//app.get('/', (req, res) => {
+  //res.sendFile(path.join(__dirname, 'public', 'test.html'));
+//});
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'test.html'));
+  res.sendFile(path.join(__dirname, '../public/test.html'));
 });
-
 // Ruta de información de la API
 app.get('/api', (req, res) => {
   res.json({
