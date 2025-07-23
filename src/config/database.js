@@ -1,24 +1,37 @@
 const { Sequelize } = require('sequelize');
 
-// Configuración (usa variables de entorno en producción)
 const sequelize = new Sequelize(
-  process.env.DB_NAME,
-  process.env.DB_USER,
-  process.env.DB_PASS,
+  process.env.DB_NAME || 'product_api',
+  process.env.DB_USER || 'root',
+  process.env.DB_PASS || '',
   {
-    host: process.env.DB_HOST,
-    dialect: process.env.DB_DIALECT,
-    logging: false
+    host: process.env.DB_HOST || 'localhost',
+    dialect: process.env.DB_DIALECT || 'mysql',
+    logging: false,
+    retry: {
+      match: [/ECONNREFUSED/],
+      max: 3
+    }
   }
 );
 
-// Probar la conexión
+// Prueba de conexión mejorada
 (async () => {
   try {
     await sequelize.authenticate();
-    console.log('Conexión a la base de datos establecida correctamente.');
+    console.log('✅ Conexión a DB establecida');
+    
+    if (process.env.NODE_ENV !== 'production') {
+      await sequelize.sync({ alter: true });
+      console.log('🔄 Modelos sincronizados');
+    }
   } catch (error) {
-    console.error('No se pudo conectar a la base de datos:', error);
+    console.error('❌ Error de conexión:');
+    console.error('Revisa que:');
+    console.error('1. MySQL esté instalado y corriendo');
+    console.error('2. Las credenciales en .env son correctas');
+    console.error('3. La base de datos existe');
+    console.error('Detalle:', error.message);
   }
 })();
 
