@@ -1,5 +1,8 @@
 const Product = require('../models/productModel');
 
+// importacion de la función validarProducto desde el archivo que cree para el test.
+const { validarProducto } = require('../utils/productValidator');
+
 // Obtener todos los productos
 exports.getAllProducts = async (req, res) => {
   try {
